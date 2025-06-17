@@ -149,7 +149,7 @@ impl Component for Application {
     type Message = AppMessage;
 
     fn view(&self, global_state: &Self::GlobalState, _props: &Self::Props, _children: Vec<ComponentSpecification>, _id: ComponentId, _window_context: &WindowContext) -> ComponentSpecification {
-        let wrapper = Container::new().width("100%").height("100%").overflow_y(Overflow::Scroll);
+        let wrapper = Container::new().background(Color::WHITE).width("100%").height("100%").overflow_y(Overflow::Scroll);
 
         let mut uploaded_files = Container::new()
             .display(Display::Flex)
