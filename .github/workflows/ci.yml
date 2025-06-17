@@ -1,0 +1,51 @@
+name: Build Website (WASM)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      CARGO_TERM_COLOR: always
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+
+      - name: Install wasm-bindgen-cli
+        run: cargo install -f wasm-bindgen-cli
+
+      - name: Install wasm-opt
+        run: cargo install wasm-opt --locked
+
+      - name: Build for wasm32-unknown-unknown
+        run: cargo build --target wasm32-unknown-unknown --release
+
+      - name: Generate JS bindings with wasm-bindgen
+        run: |
+          wasm-bindgen target/wasm32-unknown-unknown/release/svg-to-tvg.wasm \
+            --target web \
+            --no-typescript \
+            --out-dir dist \
+            --out-name svg-to-tvg
+
+      - name: Copy index.html
+        run: cp index.html dist/index.html
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: svg-to-tvg-dist
+          path: dist

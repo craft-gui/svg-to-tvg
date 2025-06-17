@@ -1,0 +1,18 @@
+[package]
+name = "svg-to-tvg"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rfd = "0.15.3"
+tinyvg-rs = { version = "0.0.2", features = ["svg-to-tvg"] }
+wasm-bindgen = "0.2.100"
+web-sys = "0.3.77"
+js-sys = "0.3.77"
+
+[dependencies.craft]
+git = "https://github.com/craft-gui/craft"
+rev = "5d74d10c7b985ae2ee5d8176d022a3c57d079818"
+default-features = false
+features = ["vello_renderer", "devtools", "http_client", "png", "jpeg", "accesskit", "sytem_fonts"]
+package = "craft_gui"
