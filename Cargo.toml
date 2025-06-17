@@ -14,5 +14,5 @@ js-sys = "0.3.77"
 git = "https://github.com/craft-gui/craft"
 rev = "5d74d10c7b985ae2ee5d8176d022a3c57d079818"
 default-features = false
-features = ["vello_renderer", "devtools", "http_client", "png", "jpeg", "accesskit", "sytem_fonts"]
+features = ["vello_cpu_renderer", "devtools", "http_client", "png", "jpeg", "accesskit", "sytem_fonts"]
 package = "craft_gui"
